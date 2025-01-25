@@ -200,13 +200,13 @@ function DonationPage() {
               {/* text-gray-500 */}
               <button
                 onClick={() => setTabContent("Sedang Berjalan")}
-                className={`${tabContent === "Sedang Berjalan" ? "bg-white text-blue-500 shadow-sm" : "text-gray-500"} inline-block rounded-md px-4 py-2 text-sm  hover:text-gray-700 focus:relative`}
+                className={`${tabContent === "Sedang Berjalan" ? "bg-white text-grey-dark shadow-sm" : "text-gray-500"} inline-block rounded-md px-4 py-2 text-sm  hover:text-gray-700 focus:relative`}
               >
                 Sedang Berjalan
               </button>
               <button
                 onClick={() => setTabContent("Sudah Selesai")}
-                className={`${tabContent === "Sudah Selesai" ? "bg-white text-blue-500 shadow-sm" : "text-gray-500"} inline-block rounded-md px-4 py-2 text-sm focus:relative`}
+                className={`${tabContent === "Sudah Selesai" ? "bg-white text-grey-dark shadow-sm" : "text-gray-500"} inline-block rounded-md px-4 py-2 text-sm focus:relative`}
               >
                 Selesai
               </button>

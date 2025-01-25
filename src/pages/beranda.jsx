@@ -116,9 +116,9 @@ const Beranda = () => {
             className="absolute top-0 left-0"
           />
         </picture>
-        <div className="relative mx-auto max-w-screen-2xl px-4 py-8 sm:px-6 flex h-[90vh] items-center lg:px-8">
-          <div className="max-w-2xl text-center ltr:sm:text-left rtl:sm:text-right">
-            <h1 className="text-5xl font-extrabold leading-tight text-left text- sm:text-5xl light:text-white dark:text-black">
+        <div className="relative mx-auto max-w-screen-2xl py-8 sm:px-6 flex h-[90vh] items-center lg:px-8 ">
+          <div className="max-w-2xl text-center ltr:sm:text-left rtl:sm:text-right bg-[#00000080] p-5 rounded-xl">
+            <h1 className="text-4xl font-extrabold leading-tight text-left md:text-5xl lg:text-5xl light:text-white dark:text-black">
               Maju dan berkah bersama Niqi Foundation
             </h1>
 
@@ -153,13 +153,18 @@ const Beranda = () => {
             </div>
 
             <div className="relative flex items-center bg-grey">
-              <span className="hidden lg:absolute lg:inset-y-0 lg:-start-16 lg:block lg:w-16 lg:bg-gray-100"></span>
+              <span className="hidden lg:absolute lg:inset-y-0 lg:-start-16 lg:block lg:w-16 lg:bg-grey"></span>
+              {/* <span className="hidden lg:absolute lg:inset-y-0 lg:-start-16 lg:block lg:w-16 lg:bg-gray-100"></span> */}
 
               <div className="p-8 sm:p-16 lg:p-24">
-                <h2 className="text-2xl font-bold text-gray-950">Apa yang kami lakukan?</h2>
+                <h2 className="text-2xl font-bold text-grey-dark">Apa yang kami lakukan?</h2>
 
-                <p className="mt-4 text-gray-600">
-                  Yayasan Nur Iqsan Ibrahim hadir sebagai jembatan kebaikan untuk umat. Dengan dukungan para dermawan, kami menjalankan berbagai program seperti penyaluran zakat, infaq, sedekah, dan wakaf, hingga santunan rutin untuk anak-anak yatim dan dhuafa. Melalui inisiatif seperti Program Sedekah Subuh, Kafil Yatim, dan pembangunan pondok pesantren, kami berkomitmen untuk menciptakan perubahan positif dan mencetak generasi yang berilmu serta berakhlak mulia. Bersama, kita bisa menghadirkan cahaya harapan bagi yang membutuhkan.
+                <p className="mt-4 text-grey-dark">
+                  Yayasan Nur Iqsan Ibrahim hadir sebagai jembatan kebaikan untuk umat. Dengan dukungan para dermawan, kami menjalankan
+                  berbagai program seperti penyaluran zakat, infaq, sedekah, dan wakaf, hingga santunan rutin untuk anak-anak yatim dan
+                  dhuafa. Melalui inisiatif seperti Program Sedekah Subuh, Kafil Yatim, dan pembangunan pondok pesantren, kami berkomitmen
+                  untuk menciptakan perubahan positif dan mencetak generasi yang berilmu serta berakhlak mulia. Bersama, kita bisa
+                  menghadirkan cahaya harapan bagi yang membutuhkan.
                 </p>
 
                 <Link
@@ -182,7 +187,8 @@ const Beranda = () => {
               <h2 className="text-3xl font-bold sm:text-4xl">Bergabung Bersama Kami</h2>
 
               <p className="mt-4 text-xl text-grey-dark">
-                Bergabung bersama kami dalam mengembangkan Yayasan Nur Iqsan Ibrahim agar dapat membantu anak-anak Yatim dan Dhu'afa lebih baik lagi.
+                Bergabung bersama kami dalam mengembangkan Yayasan Nur Iqsan Ibrahim agar dapat membantu anak-anak Yatim dan Dhu'afa lebih
+                baik lagi.
               </p>
             </div>
           </div>
@@ -232,7 +238,8 @@ const Beranda = () => {
               <h2 className="text-3xl font-bold sm:text-4xl">Donasi Yang Sedang Berjalan</h2>
 
               <p className="mt-4 text-xl text-grey-dark">
-              Ulurkan infaq dan sedekah terbaik Anda untuk membantu kami mewujudkan program donasi yang sedang berjalan. Setiap kebaikan Anda membawa harapan bagi yang membutuhkan.
+                Ulurkan infaq dan sedekah terbaik Anda untuk membantu kami mewujudkan program donasi yang sedang berjalan. Setiap kebaikan
+                Anda membawa harapan bagi yang membutuhkan.
               </p>
             </div>
           </div>

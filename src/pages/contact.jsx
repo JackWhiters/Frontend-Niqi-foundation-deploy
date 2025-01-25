@@ -7,9 +7,9 @@ const Contact = () => {
         <div className="w-full">
           {/* <div className="w-full px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16"> */}
           <div className="max-w-4xl">
-            <h2 className="text-3xl font-bold sm:text-4xl">Hubungi Kami</h2>
+            <h2 className="text-3xl font-bold sm:text-4xl text-grey-dark">Hubungi Kami</h2>
 
-            <p className="mt-4 text-2xl text-gray-600">
+            <p className="mt-4 text-2xl text-grey-dark">
               Jangan ragu untuk menghubungi kami melalui media sosial atau berkunjung langsung ke tempat yayasan kami.
             </p>
           </div>
@@ -72,7 +72,12 @@ const Contact = () => {
                   </span> */}
                   <div>
                     <p className="text-3xl font-bold">Email</p>
-                    <p className="mt-1 text-2xl text-gray-600">Email@gmail.com</p>
+                    <a
+                      className="flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
+                      href="mailto:niqifoundation@gmail.com" 
+                    >
+                      <span className="mt-1 text-2xl text-grey-dark">niqifoundation@gmail.com</span>
+                    </a>
                   </div>
                 </div>
                 <div className="flex gap-4">
@@ -81,7 +86,7 @@ const Contact = () => {
                   </button>
                   <div>
                     <p className="text-3xl font-bold">Telepon</p>
-                    <p className="mt-1 text-2xl text-gray-600">012345678910</p>
+                    <p className="mt-1 text-2xl text-grey-dark">021 8889 8276 &nbsp; | &nbsp; 0857 7007 9799</p>
                   </div>
                 </div>
                 <div className="flex gap-4">
@@ -92,18 +97,40 @@ const Contact = () => {
                     <p className="text-3xl font-bold">Sosial Media</p>
                     <div className="flex gap-6 mt-1">
                       <button className="relative w-12 h-12 rounded-full bg-grey hover:bg-black/10">
-                        <a href="https://www.facebook.com/">
+                        <a
+                          rel="noreferrer"
+                          target="_blank"
+                          href="https://www.facebook.com/niqifoundation2018/"
+                        >
                           <i className="block mt-1 text-2xl fi fi-brands-facebook"></i>
                         </a>
                       </button>
                       <button className="relative w-12 h-12 rounded-full bg-grey hover:bg-black/10">
-                        <i className="block mt-1 text-2xl fi fi-brands-twitter"></i>
+                        <a
+                          rel="noreferrer"
+                          target="_blank"
+                          href="https://www.youtube.com/@niqi2018"
+                        >
+                          <i className="block mt-1 text-2xl fi fi-brands-youtube"></i>
+                        </a>
                       </button>
                       <button className="relative w-12 h-12 rounded-full bg-grey hover:bg-black/10">
-                        <i className="block mt-1 text-2xl fi-brands-instagram"></i>
+                        <a
+                          rel="noreferrer"
+                          target="_blank"
+                          href="https://www.instagram.com/niqifoundation/"
+                        >
+                          <i className="block mt-1 text-2xl fi-brands-instagram"></i>
+                        </a>
                       </button>
                       <button className="relative w-12 h-12 rounded-full bg-grey hover:bg-black/10">
-                        <i className="block mt-1 text-2xl fi fi-brands-tik-tok"></i>
+                        <a
+                          rel="noreferrer"
+                          target="_blank"
+                          href="https://www.tiktok.com/@niqifoundation"
+                        >
+                          <i className="block mt-1 text-2xl fi fi-brands-tik-tok"></i>
+                        </a>
                       </button>
                     </div>
                   </div>
