@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react(), visualizer()],
   resolve: {
     alias: {
-      "@": "/src", // Opsional, untuk mempermudah import dari `src`
+      "@": "/public", // Opsional, untuk mempermudah import dari `src`
     },
   },
   build: {
