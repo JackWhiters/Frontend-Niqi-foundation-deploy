@@ -1,8 +1,8 @@
 import axios from "axios";
 import { Link, Outlet, useMatch, useNavigate } from "react-router-dom";
-import logo from "@/assets/imgs/logo-niqi.webp";
-// import darkLogo from "@/assets/imgs/logo-dark.png";
-// import lightLogo from "@/assets/imgs/logo-light.png";
+import logo from "/assets/imgs/logo-niqi.webp";
+// import darkLogo from "/assets/imgs/logo-dark.png";
+// import lightLogo from "/assets/imgs/logo-light.png";
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext, UserContext } from "../App";
 import UserNavigationPanel from "./UserNavigation";

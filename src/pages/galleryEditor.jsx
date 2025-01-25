@@ -1,8 +1,8 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
-import logo from "@/assets/imgs/logo-niqi.webp";
+import logo from "/assets/imgs/logo-niqi.webp";
 
-import lightBanner from "@/assets/imgs/blog banner light.png";
-import darkBanner from "@/assets/imgs/blog banner dark.png";
+import lightBanner from "/assets/imgs/blog banner light.png";
+import darkBanner from "/assets/imgs/blog banner dark.png";
 import AnimationWrapper from "../common/page-animation";
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext, UserContext } from "../App";

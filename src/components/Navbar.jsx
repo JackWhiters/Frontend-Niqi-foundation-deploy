@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Link, Outlet, useMatch, useNavigate } from "react-router-dom";
-// import logo from "@/assets/imgs/logo-niqi.webp";
-import logo from "@/assets/imgs/logo-niqi-nav.webp";
+// import logo from "/assets/imgs/logo-niqi.webp";
+import logo from "/assets/imgs/logo-niqi-nav.webp";
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext, UserContext } from "../App";
 import UserNavigationPanel from "./UserNavigation";

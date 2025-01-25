@@ -1,5 +1,5 @@
-// import logo from "@/assets/imgs/full-logo-niqi.webp";
-import logo from "@/assets/imgs/logo-niqi-full-footer.webp";
+// import logo from "/assets/imgs/full-logo-niqi.webp";
+import logo from "/assets/imgs/logo-niqi-full-footer.webp";
 import { Link } from "react-router-dom";
 import { topFunction } from "../lib/utils";
 
