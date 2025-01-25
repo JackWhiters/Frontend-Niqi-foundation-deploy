@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import beranda from "/assets/imgs/beranda.webp";
+import beranda from "@/assets/imgs/beranda.webp";
 import "./hero.css";
 
 const Hero = () => {

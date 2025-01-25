@@ -1,5 +1,5 @@
 import Footer from "../components/Footer";
-import about from  "/assets/imgs/about-4.webp";
+import about from  "@/assets/imgs/about-4.webp";
 
 const AboutPage = () => {
   return (
