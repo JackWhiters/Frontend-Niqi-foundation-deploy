@@ -1,0 +1,7 @@
+#hero-img {
+  transition: opacity 0.3s ease-in-out;
+}
+
+#hero-img:not([src]) {
+  visibility: hidden; /* Prevent showing broken image icon before the source loads */
+}
