@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { ThemeContext } from "../App";
 import { Link } from "react-router-dom";
-import lightPageNotFoundImage from "@assets/imgs/404-light.webp";
-import darkPageNotFoundImage from "@assets/imgs/404-dark.webp";
-import fullLogo from "@assets/imgs/logo-niqi.webp";
+import lightPageNotFoundImage from "@/assets/imgs/404-light.webp";
+import darkPageNotFoundImage from "@/assets/imgs/404-dark.webp";
+import fullLogo from "@/assets/imgs/logo-niqi.webp";
 // import lightFullLogo from "/assets/imgs/full-logo-light.webp";
 // import darkFullLogo from "/assets/imgs/full-logo-dark.webp";
 
