@@ -17,12 +17,12 @@ export default defineConfig({
       output: {
         manualChunks: {
           // Pemisahan modul untuk bundle yang lebih efisien
-          editorJs: ["@editorjs/editorjs"],
-          firebaseApp: ["firebase/app"],
-          firebaseAuth: ["firebase/auth"],
-          framerMotion: ["framer-motion"],
-          axios: ["axios"],
-          reactDom: ["react-dom/client"],
+          // editorJs: ["@editorjs/editorjs"],
+          // firebaseApp: ["firebase/app"],
+          // firebaseAuth: ["firebase/auth"],
+          // framerMotion: ["framer-motion"],
+          // axios: ["axios"],
+          // reactDom: ["react-dom/client"],
         },
       },
     },
