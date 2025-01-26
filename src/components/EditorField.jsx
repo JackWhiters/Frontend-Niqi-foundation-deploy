@@ -1,75 +1,67 @@
-import { useEffect, useRef } from "react";
-// import EditorJS from "@editorjs/editorjs";
-// import EditorJS from "https://cdn.jsdelivr.net/npm/@editorjs/editorjs@2.26.5/+esm"
-import EditorJS from "@editorjs/editorjs"
-import { tools } from "./Tools";
-
-const EditorField = ({ unique_id, setValue, placeholder, initialValue, type }) => {
-  // Init Instance Editor
-  const editorInstance = useRef();
-  const DEFAULT_INITIAL_DATA = {
-    time: new Date().getTime(),
-    blocks: [
-      {
-        type: "header",
-        data: {
-          text: "",
-          level: 1,
-        },
-      },
-    ],
-  };
-
-  const initEditorInstance = () => {
-    const holderElement = document.getElementById(unique_id);
-    console.log("Holder Element:", holderElement); // Debug holder DOM
-    if (!holderElement) {
-      console.error("EditorJS Holder not found!");
-      return;
-    }
-
-    const editor = new EditorJS({
-      holder: unique_id,
-      tools,
-      onReady: () => {
-        console.log("EditorJS Initialized:", editor);
-        editorInstance.current = editor;
-      },
-      autofocus: true,
-      data: initialValue ?? DEFAULT_INITIAL_DATA,
-      placeholder: placeholder ?? "",
-      onChange: async () => {
-        console.log("Editor Content Updated!");
-        await editor.saver.save().then(val => {
-          if (type === "blog") {
-            setValue(prevState => {
-              return { ...prevState, content: val };
-            });
-          } else {
-            setValue(val);
-          }
-        });
-      },
-    });
-  };
-
-  useEffect(() => {
-    if (editorInstance.current === null) {
-      initEditorInstance();
-    }
-
-    return () => {
-      editorInstance?.current?.destroy();
-      editorInstance.current = null;
-    };
-  }, []);
-
-  return (
-    <div
-      id={unique_id}
-      className="font-gelasio h-72"
-    ></div>
-  );
-};
-
-export default EditorField;
+import { useEffect, useRef } from "react";    
+import EditorJS from "@editorjs/editorjs";    
+import { tools } from "./Tools";    
+    
+const EditorField = ({ unique_id, setValue, placeholder, initialValue, type }) => {    
+  // Init Instance Editor    
+  const editorInstance = useRef();    
+    
+  // Default initial data    
+  const DEFAULT_INITIAL_DATA = {    
+    time: new Date().getTime(),    
+    blocks: [    
+      {    
+        type: "header",    
+        data: {    
+          text: "",    
+        },    
+      },    
+    ],    
+  };    
+    
+  useEffect(() => {    
+    // Initialize EditorJS    
+    editorInstance.current = new EditorJS({    
+      holder: unique_id,    
+      tools: tools,    
+      data: initialValue || DEFAULT_INITIAL_DATA,    
+      onReady: () => {    
+        console.log("EditorJS is ready");    
+      },    
+      onChange: () => {    
+        editorInstance.current.save().then((outputData) => {    
+          console.log("Data saved: ", outputData);    
+          setValue((prev) => ({ ...prev, content: outputData }));    
+        }).catch((error) => {    
+          console.error("Saving failed: ", error);    
+        });    
+      },    
+    });    
+    
+    // Cleanup function to destroy the editor instance    
+    return () => {    
+      if (editorInstance.current) {    
+        editorInstance.current.destroy();    
+        console.log("EditorJS instance destroyed");    
+      }    
+    };    
+  }, [unique_id, setValue, initialValue]);    
+    
+  // Log initial value to check if it's being passed correctly    
+  useEffect(() => {    
+    console.log("Initial value received:", initialValue);    
+    if (initialValue && typeof initialValue !== 'object') {  
+      console.warn("Initial value should be an object.");  
+      initialValue = DEFAULT_INITIAL_DATA; // Atur ke data default jika tidak valid  
+    }     
+  }, [initialValue]);    
+    
+  return (    
+    <div id={unique_id} className="editor-field" placeholder={placeholder}>    
+      {/* Placeholder for EditorJS */}    
+      <p>{placeholder}</p>    
+    </div>    
+  );    
+};    
+    
+export default EditorField;    
