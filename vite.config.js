@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react(), visualizer()],
   resolve: {
     alias: {
-      "~src": "/src", // Untuk mempermudah import file dari folder `src`
+      "@": "/src", // Untuk mempermudah import file dari folder `src`
     },
   },
   build: {
@@ -28,7 +28,7 @@ export default defineConfig({
     },
     assetsInclude: ["**/*.webp", "**/*.png", "**/*.jpg", "**/*.svg"], // Masukkan format file tambahan jika diperlukan
   },
-  //   server: {
-  //   open: true, // Opsional, buka browser secara otomatis
-  // },
+    server: {
+    open: true, // Opsional, buka browser secara otomatis
+  },
 });
