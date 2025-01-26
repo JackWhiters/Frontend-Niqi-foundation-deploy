@@ -31,4 +31,7 @@ export default defineConfig({
   server: {
     open: true, // Opsional, buka browser secara otomatis
   },
+  headers: {
+    'Cache-Control': 'no-store', // Nonaktifkan cache selama pengembangan
+  }
 });
