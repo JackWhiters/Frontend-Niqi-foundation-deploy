@@ -1,7 +1,7 @@
 import { getFullDay } from "../common/date";
 import { numberFormat } from "../lib/utils";
-import logo_full from "/assets/imgs/full-logo-niqi.webp";
-import check_icon from "/assets/imgs/check-circle.svg";
+import logo_full from "@/assets/imgs/full-logo-niqi.webp";
+import check_icon from "@/assets/imgs/check-circle.svg";
 import useDownloadInvoice from "../hooks/useDownloadInvoice";
 import { upperCase } from "lodash";
 import { useNavigate } from "react-router-dom";

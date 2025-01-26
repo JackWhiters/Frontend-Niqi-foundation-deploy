@@ -1,26 +1,31 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 import { visualizer } from "rollup-plugin-visualizer";
 
-
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), visualizer()],
+  resolve: {
+    alias: {
+      "@": "/src", // Untuk mempermudah import file dari folder `src`
+    },
+  },
   build: {
-    minify: 'esbuild',
-    cssMinify: 'lightningcss',
+    minify: "esbuild", // Gunakan `esbuild` untuk build yang cepat
+    cssMinify: "lightningcss", // Kompresi CSS dengan LightningCSS
     rollupOptions: {
-      treeshake: 'recommended',
+      treeshake: "recommended", // Optimalisasi Tree Shaking
       output: {
         manualChunks: {
-          editorJs: ['@editorjs/editorjs'],
-          firebaseApp: ['firebase/app'],
-          firebaseAuth: ['firebase/auth'],
-          framerMotion: ['framer-motion'],
-          axios: ['axios'],
-          reactDom: ['react-dom/client'],
-        }
-      }
-    }
-  }
-})
+          // Pemisahan modul untuk bundle yang lebih efisien
+          editorJs: ["@editorjs/editorjs"],
+          firebaseApp: ["firebase/app"],
+          firebaseAuth: ["firebase/auth"],
+          framerMotion: ["framer-motion"],
+          axios: ["axios"],
+          reactDom: ["react-dom/client"],
+        },
+      },
+    },
+    assetsInclude: ["**/*.webp", "**/*.png", "**/*.jpg", "**/*.svg"], // Masukkan format file tambahan jika diperlukan
+  },
+});
