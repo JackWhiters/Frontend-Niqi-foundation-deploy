@@ -65,7 +65,7 @@ const EditorField = ({ unique_id, setValue, placeholder, initialValue, type }) =
   return (
     <div
       id={unique_id}
-      className="font-gelasio"
+      className="font-gelasio h-72"
     ></div>
   );
 };
