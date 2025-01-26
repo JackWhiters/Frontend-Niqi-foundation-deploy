@@ -26,7 +26,7 @@ export default defineConfig({
         },
       },
     },
-    assetsInclude: ["**/*.webp", "**/*.png", "**/*.jpg", "**/*.svg"], // Masukkan format file tambahan jika diperlukan
+    // assetsInclude: ["**/*.webp", "**/*.png", "**/*.jpg", "**/*.svg"], // Masukkan format file tambahan jika diperlukan
   },
     server: {
     open: true, // Opsional, buka browser secara otomatis
