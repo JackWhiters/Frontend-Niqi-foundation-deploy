@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 // import EditorJS from "@editorjs/editorjs";
 import EditorJS from "https://cdn.jsdelivr.net/npm/@editorjs/editorjs@2.26.5/+esm"
+import EditorJS from "@editorjs/editorjs"
 import { tools } from "./Tools";
 
 const EditorField = ({ unique_id, setValue, placeholder, initialValue, type }) => {
