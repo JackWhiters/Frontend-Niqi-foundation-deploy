@@ -13,7 +13,7 @@ export default defineConfig({
     minify: "esbuild", // Gunakan `esbuild` untuk build yang cepat
     cssMinify: "lightningcss", // Kompresi CSS dengan LightningCSS
     rollupOptions: {
-      treeshake: "recommended", // Optimalisasi Tree Shaking
+      // treeshake: "recommended", // Optimalisasi Tree Shaking
       output: {
         manualChunks: {
           // Pemisahan modul untuk bundle yang lebih efisien
