@@ -209,6 +209,7 @@ const BlogEditor = () => {
               initialValue={blog?.content[0]}
               unique_id={"blog"}
               type={"blog"}
+              className="h-72"
             />
           </div>
         </section>
