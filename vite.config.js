@@ -1,34 +1,31 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 import { visualizer } from "rollup-plugin-visualizer";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), visualizer()],
+  resolve: {
+    alias: {
+      "@": "/src", // Untuk mempermudah import file dari folder `src`
+    },
+  },
   build: {
-    minify: 'esbuild', // Gunakan esbuild untuk build cepat
-    cssMinify: 'lightningcss', // Kompres CSS menggunakan LightningCSS
+    minify: "esbuild", // Gunakan `esbuild` untuk build yang cepat
+    cssMinify: "lightningcss", // Kompresi CSS dengan LightningCSS
     rollupOptions: {
-      treeshake: 'recommended', // Tree Shaking untuk optimalisasi
-      external: [
-        '@editorjs/editorjs',  // Contoh: modul eksternal yang tidak akan di-bundle
-        'firebase/app',
-        'firebase/auth',
-        'framer-motion',
-        'axios',
-        'react',
-        'react-dom/client'
-      ],
+      treeshake: "recommended", // Optimalisasi Tree Shaking
       output: {
         manualChunks: {
-          editorJs: ['@editorjs/editorjs'],
-          firebaseApp: ['firebase/app'],
-          firebaseAuth: ['firebase/auth'],
-          framerMotion: ['framer-motion'],
-          axios: ['axios'],
-          reactDom: ['react-dom/client'],
-        }
-      }
-    }
-  }
-})
+          // Pemisahan modul untuk bundle yang lebih efisien
+          editorJs: ["@editorjs/editorjs"],
+          firebaseApp: ["firebase/app"],
+          firebaseAuth: ["firebase/auth"],
+          framerMotion: ["framer-motion"],
+          axios: ["axios"],
+          reactDom: ["react-dom/client"],
+        },
+      },
+    },
+    assetsInclude: ["**/*.webp", "**/*.png", "**/*.jpg", "**/*.svg"], // Masukkan format file tambahan jika diperlukan
+  },
+});
