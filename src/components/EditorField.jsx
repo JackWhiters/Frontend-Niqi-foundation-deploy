@@ -19,15 +19,25 @@ const EditorField = ({ unique_id, setValue, placeholder, initialValue, type }) =
   };
 
   const initEditorInstance = () => {
+    const holderElement = document.getElementById(unique_id);
+    console.log("Holder Element:", holderElement); // Debug holder DOM
+    if (!holderElement) {
+      console.error("EditorJS Holder not found!");
+      return;
+    }
+
     const editor = new EditorJS({
       holder: unique_id,
+      tools,
       onReady: () => {
+        console.log("EditorJS Initialized:", editor);
         editorInstance.current = editor;
       },
       autofocus: true,
       data: initialValue ?? DEFAULT_INITIAL_DATA,
       placeholder: placeholder ?? "",
       onChange: async () => {
+        console.log("Editor Content Updated!");
         await editor.saver.save().then(val => {
           if (type === "blog") {
             setValue(prevState => {
@@ -38,7 +48,6 @@ const EditorField = ({ unique_id, setValue, placeholder, initialValue, type }) =
           }
         });
       },
-      tools: tools,
     });
   };
 
