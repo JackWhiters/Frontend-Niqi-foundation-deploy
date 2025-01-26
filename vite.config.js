@@ -6,14 +6,14 @@ export default defineConfig({
   plugins: [react(), visualizer()],
   resolve: {
     alias: {
-      "@": "/src", // Untuk mempermudah import file dari folder `src`
+      "~src": "/src", // Untuk mempermudah import file dari folder `src`
     },
   },
   build: {
     minify: "esbuild", // Gunakan `esbuild` untuk build yang cepat
     cssMinify: "lightningcss", // Kompresi CSS dengan LightningCSS
     rollupOptions: {
-      // treeshake: "recommended", // Optimalisasi Tree Shaking
+      treeshake: "recommended", // Optimalisasi Tree Shaking
       output: {
         manualChunks: {
           // Pemisahan modul untuk bundle yang lebih efisien

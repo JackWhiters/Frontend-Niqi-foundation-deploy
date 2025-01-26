@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 
 import AnimationWrapper from "../../common/page-animation";
-import googleIcon from "@/assets/imgs/google.png";
+import googleIcon from "~src/assets/imgs/google.png";
 import { storeInSession } from "../../common/session";
 import { UserContext } from "../../App";
 import { authWithGoogle } from "../../common/firebase";
