@@ -15,15 +15,15 @@ export default defineConfig({
     rollupOptions: {
       treeshake: "recommended", // Optimalisasi Tree Shaking
       output: {
-        manualChunks: {
-          // Pemisahan modul untuk bundle yang lebih efisien
-          editorJs: ["@editorjs/editorjs"],
-          firebaseApp: ["firebase/app"],
-          firebaseAuth: ["firebase/auth"],
-          framerMotion: ["framer-motion"],
-          axios: ["axios"],
-          reactDom: ["react-dom/client"],
-        },
+        // manualChunks: {
+        //   // Pemisahan modul untuk bundle yang lebih efisien
+        //   editorJs: ["@editorjs/editorjs"],
+        //   firebaseApp: ["firebase/app"],
+        //   firebaseAuth: ["firebase/auth"],
+        //   framerMotion: ["framer-motion"],
+        //   axios: ["axios"],
+        //   reactDom: ["react-dom/client"],
+        // },
       },
     },
     assetsInclude: ["**/*.webp", "**/*.png", "**/*.jpg", "**/*.svg"], // Masukkan format file tambahan jika diperlukan
