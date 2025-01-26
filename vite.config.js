@@ -28,10 +28,7 @@ export default defineConfig({
     },
     assetsInclude: ["**/*.webp", "**/*.png", "**/*.jpg", "**/*.svg"], // Masukkan format file tambahan jika diperlukan
   },
-  server: {
+    server: {
     open: true, // Opsional, buka browser secara otomatis
   },
-  headers: {
-    'Cache-Control': 'no-store', // Nonaktifkan cache selama pengembangan
-  }
 });
