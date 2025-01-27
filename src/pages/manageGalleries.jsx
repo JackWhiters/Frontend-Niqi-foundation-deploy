@@ -45,9 +45,9 @@ const ManageGalleries = () => {
     <>
       <h1 className="w-full">Manajemen Galeri</h1>
 
-      <div className="my-8 flex gap-6">
+      <div className="flex gap-6 my-8">
         <Link
-          className="px-5 py-3 bg-slate-100 rounded-xl w-auto text-center text-nowrap"
+          className="w-auto px-5 py-3 text-center text-black dark:text-white bg-slate-100 rounded-xl text-nowrap"
           to={"/gallery/create"}
         >
           Tambah Galeri
