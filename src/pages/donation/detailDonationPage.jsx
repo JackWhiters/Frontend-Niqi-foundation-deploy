@@ -64,7 +64,7 @@ const DetailDonationPage = () => {
   return (
     <>
       <Navbar />
-      <section className="h-cover pt-10">
+      <section className="pt-10 h-cover">
         {/* Share Overlay */}
         <Modal
           open={showShareOverlay}
@@ -89,7 +89,7 @@ const DetailDonationPage = () => {
             />
           )}
           <div className={"flex flex-col gap-4 justify-center"}>
-            <p className="dark:text-grey light:text-black text-center">Atau Bagikan Link Donasi </p>
+            <p className="text-center dark:text-grey light:text-black">Atau Bagikan Link Donasi </p>
             <button
               className={
                 "px-12 py-3 rounded-xl dark:text-black light:text-grey font-semibold bg-rose-600 hover:bg-rose-900 border hover:text-black"
@@ -147,22 +147,22 @@ const DetailDonationPage = () => {
               <div>
                 <h2 className="text-3xl font-bold sm:text-4xl">Detail Donasi Berjalan</h2>
 
-                <p className="mt-4 text-gray-600 text-2xl">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et dolor rutrum, dictum nunc vel.
-                </p>
+                {/* <p className="mt-4 text-2xl text-gray-600">
+                  Lihat detail donasi yang sedang dijalankanm disini.
+                </p> */}
               </div>
               {isAdmin ? (
                 <div className="flex flex-col min-[950px]:flex-row sm:justify-end gap-4 mt-4 min-md:mt-0 w-full">
                   <Link
                     to={`/donation/edit/${detailDonation.donation_id}`}
-                    className="px-6 py-3 border text-center rounded-xl bg-black text-white hover:bg-white hover:text-black"
+                    className="px-6 py-3 text-center text-white bg-black border rounded-xl hover:bg-white hover:text-black"
                   >
                     Edit Donasi
                   </Link>
                   {detailDonation.status !== "Closed" && (
                     <button
                       onClick={() => setDonationToDraftOverlay(!donationToDraftOverlay)}
-                      className="px-6 py-3 border text-center rounded-xl bg-rose-900 dark:text-black light:text-grey hover:bg-rose-600"
+                      className="px-6 py-3 text-center border rounded-xl bg-rose-900 dark:text-black light:text-grey hover:bg-rose-600"
                     >
                       Pindahkan Ke Draft
                     </button>
@@ -174,14 +174,14 @@ const DetailDonationPage = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8 overflow-hidden">
-            <div className="rounded-lg lg:col-span-2 h-auto">
+          <div className="grid grid-cols-1 gap-4 overflow-hidden lg:grid-cols-3 lg:gap-8">
+            <div className="h-auto rounded-lg lg:col-span-2">
               <div className="mt-4">
-                <div className="block rounded-lg p-4 border border-gray-200">
+                <div className="block p-4 border border-gray-200 rounded-lg">
                   <img
                     alt="thumbnail donasi"
                     src={detailDonation.thumbnail}
-                    className="h-auto w-full rounded-md object-cover"
+                    className="object-cover w-full h-auto rounded-md"
                   />
 
                   <div className="my-4">
@@ -196,7 +196,7 @@ const DetailDonationPage = () => {
                         </label>
                         <select
                           id="Tab"
-                          className="w-full rounded-md border-gray-200"
+                          className="w-full border-gray-200 rounded-md"
                           onChange={e => setActiveTab(e.target.value)}
                           value={activeTab}
                         >
@@ -208,7 +208,7 @@ const DetailDonationPage = () => {
                       <div className="hidden sm:block">
                         <div className="border-b border-gray-200">
                           <nav
-                            className="-mb-px flex gap-6"
+                            className="flex gap-6 -mb-px"
                             aria-label="Tabs"
                           >
                             <button
@@ -244,7 +244,7 @@ const DetailDonationPage = () => {
                       {activeTab === "Deskripsi" && (
                         <dl>
                           <div>
-                            <h3 className="font-bold text-2xl text-rose-500">{detailDonation.title}</h3>
+                            <h3 className="text-2xl font-bold text-rose-500">{detailDonation.title}</h3>
                           </div>
                           <div className="w-full py-4">
                             <p className="text-xl">{detailDonation.content}</p>
@@ -261,7 +261,7 @@ const DetailDonationPage = () => {
 
             {/* Card Donasi */}
             <div className="mt-4">
-              <div className="rounded-lg border border-gray-300 h-fit p-5">
+              <div className="p-5 border border-gray-300 rounded-lg h-fit">
                 <div className="text-left">
                   <p className="font-semibold text-dark-grey">Dana Terkumpul</p>
                   <p className="text-3xl font-bold text-rose-600">Rp {numberFormat(detailDonation.total_collected)}</p>
@@ -269,21 +269,21 @@ const DetailDonationPage = () => {
                 <div className="py-2 text-left">
                   <p className="text-xl font-medium text-gray-400">Target Donasi : Rp {numberFormat(detailDonation.target_amount)}</p>
                 </div>
-                <hr className="border-gray-200 my-5" />
+                <hr className="my-5 border-gray-200" />
                 <div>
-                  <div className="mb-2 flex justify-between items-center">
+                  <div className="flex items-center justify-between mb-2">
                     <p className="text-base">Progress Berjalan</p>
                     <span className="text-base">{detailDonation.percentage_collected}%</span>
                   </div>
                   <div
-                    className="flex w-full h-8 bg-gray-300 rounded-sm overflow-hidden"
+                    className="flex w-full h-8 overflow-hidden bg-gray-300 rounded-sm"
                     role="progressbar"
                     aria-valuenow={detailDonation.percentage_collected}
                     aria-valuemin={0}
                     aria-valuemax={100}
                   >
                     <div
-                      className="flex flex-col justify-center rounded-sm overflow-hidden bg-rose-500 text-xs text-white text-center whitespace-nowrap transition duration-500"
+                      className="flex flex-col justify-center overflow-hidden text-xs text-center text-white transition duration-500 rounded-sm bg-rose-500 whitespace-nowrap"
                       style={{
                         width: `${detailDonation.percentage_collected ? detailDonation.percentage_collected : 0}%`,
                       }}
@@ -292,13 +292,13 @@ const DetailDonationPage = () => {
                 </div>
                 <div className="w-full">
                   {detailDonation.status === "Closed" ? (
-                    <button className="w-full mt-5 inline-block rounded border-none bg-rose-950 px-12 py-3 text-base font-medium text-white  focus:outline-none focus:ring active:bg-rose-500 text-center">
+                    <button className="inline-block w-full px-12 py-3 mt-5 text-base font-medium text-center text-white border-none rounded bg-rose-950 focus:outline-none focus:ring active:bg-rose-500">
                       Donasi Telah Selesai
                     </button>
                   ) : !access_token ? (
                     <Link
                       to={`/signin`}
-                      className="w-full mt-5 inline-block rounded border-none bg-rose-900 hover:bg-rose-600 px-12 py-3 text-base font-medium dark:text-black light:text-grey focus:outline-none focus:ring active:bg-rose-500 text-center"
+                      className="inline-block w-full px-12 py-3 mt-5 text-base font-medium text-center border-none rounded bg-rose-900 hover:bg-rose-600 dark:text-black light:text-grey focus:outline-none focus:ring active:bg-rose-500"
                     >
                       Masuk Untuk Donasi
                     </Link>
@@ -318,7 +318,7 @@ const DetailDonationPage = () => {
 
                         topFunction();
                       }}
-                      className="w-full mt-5 inline-block rounded border-none bg-rose-900 hover:bg-rose-600 px-12 py-3 text-base font-medium dark:text-black light:text-grey focus:outline-none focus:ring active:bg-rose-500 text-center"
+                      className="inline-block w-full px-12 py-3 mt-5 text-base font-medium text-center border-none rounded bg-rose-900 hover:bg-rose-600 dark:text-black light:text-grey focus:outline-none focus:ring active:bg-rose-500"
                     >
                       Donasi Sekarang
                     </Link>
@@ -330,12 +330,12 @@ const DetailDonationPage = () => {
                       setShowShareOverlay(true);
                       fetchShareLinkDonation();
                     }}
-                    className="w-full mt-5 inline-block rounded border btn-light px-12 py-3 text-base font-medium hover:border-red focus:outline-none focus:ring text-center"
+                    className="inline-block w-full px-12 py-3 mt-5 text-base font-medium text-center border rounded btn-light hover:border-red focus:outline-none focus:ring"
                   >
                     Bagikan Donasi
                   </button>
                 </div>
-                <hr className="border-gray-200 my-5" />
+                <hr className="my-5 border-gray-200" />
 
                 {/* Donasi Terbaru */}
                 <div className="w-full">
