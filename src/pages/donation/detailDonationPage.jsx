@@ -144,7 +144,7 @@ const DetailDonationPage = () => {
           {/* <div className="w-full px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16"> */}
           <div className="w-full">
             <div className="flex w-full flex-col min-[950px]:flex-row justify-between items-center">
-              <div style="width: -webkit-fill-available;">
+              <div className="w-1/2">
                 <h2 className="text-3xl font-bold sm:text-4xl">Detail Donasi Berjalan</h2>
 
                 {/* <p className="mt-4 text-2xl text-gray-600">
