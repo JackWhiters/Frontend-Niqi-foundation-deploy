@@ -43,6 +43,7 @@ const EditProfile = () => {
         })
         .catch(err => {
           console.log(err);
+          toast.error("Gagal memuat data profil, coba lagi nanti.");
         });
     }
   }, [access_token]);
@@ -61,7 +62,8 @@ const EditProfile = () => {
     e.preventDefault();
 
     if (updatedProfileImg) {
-      let loadingToast = toast.loading("Mengupload...");
+      let loadingToast = toast.loading("Mengupload gambar...");
+
       e.target.setAttribute("disabled", true);
 
       uploadImage(updatedProfileImg)
@@ -75,7 +77,7 @@ const EditProfile = () => {
                   headers: {
                     Authorization: `Bearer ${access_token}`,
                   },
-                },
+                }
               )
               .then(({ data }) => {
                 let newUserAuth = {
@@ -90,17 +92,20 @@ const EditProfile = () => {
 
                 toast.dismiss(loadingToast);
                 e.target.removeAttribute("disabled");
-                toast.success("Berhasil diupload 👍");
+                toast.success("Gambar berhasil diupload 👍");
               })
               .catch(({ response }) => {
                 toast.dismiss(loadingToast);
                 e.target.removeAttribute("disabled");
-                toast.error(response.data.error);
+                toast.error("Gagal mengupload gambar Pastikan Gambar Tidak lebih dari 3 MB dan berformat JPEG/JPG/PNG" + response.data.error);
               });
           }
         })
         .catch(err => {
           console.log(err);
+          toast.dismiss(loadingToast);
+          e.target.removeAttribute("disabled");
+          toast.error("Gagal mengupload gambar. Silakan coba lagi.");
         });
     }
   };
@@ -118,13 +123,14 @@ const EditProfile = () => {
     let { username, bio, youtube, facebook, twitter, github, instagram, website } = formData;
 
     if (username.length < 3) {
-      return toast.error("Username paling sedikit setidaknya 3 huruf");
+      return toast.error("Username minimal 3 karakter");
     }
     if (bio.length > bioLimit) {
-      return toast.error(`Bio tidak boleh lebih dari ${bioLimit}`);
+      return toast.error(`Bio tidak boleh lebih dari ${bioLimit} karakter`);
     }
 
-    let loadingToast = toast.loading("Updating...");
+    let loadingToast = toast.loading("Memperbarui profil...");
+
     e.target.setAttribute("disabled", true);
 
     axios
@@ -146,7 +152,7 @@ const EditProfile = () => {
           headers: {
             Authorization: `Bearer ${access_token}`,
           },
-        },
+        }
       )
       .then(({ data }) => {
         if (userAuth.username !== data.username) {
@@ -158,12 +164,12 @@ const EditProfile = () => {
 
         toast.dismiss(loadingToast);
         e.target.removeAttribute("disabled");
-        toast.success("Profile Telah Diupdate");
+        toast.success("Profil berhasil diperbarui!");
       })
       .catch(({ response }) => {
         toast.dismiss(loadingToast);
         e.target.removeAttribute("disabled");
-        toast.error(response.data.error);
+        toast.error("Gagal memperbarui profil: " + response.data.error);
       });
   };
 
@@ -239,7 +245,7 @@ const EditProfile = () => {
               />
 
               <p className="text-dark-grey -mt-3">
-                Username akan digunakan sebagai pencarian pengguna dan akan ditampilkan kepada semua pengguna
+                Username akan digunakan sebagai pencarian pengguna dan akan ditampilkan kepada semua pengguna.
               </p>
 
               <textarea
