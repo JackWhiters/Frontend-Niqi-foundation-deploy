@@ -116,8 +116,8 @@ const Navbar = () => {
         </Modal>
       )}
 
-      <nav className="navbar z-50">
-        <div className="flex gap-6 items-center">
+      <nav className="z-50 navbar">
+        <div className="flex items-center gap-6">
           <Link
             to="/"
             className="flex items-center gap-2 md:py-2"
@@ -146,7 +146,7 @@ const Navbar = () => {
 
         <div className="hidden min-[1450px]:flex justify-center gap-6 ">
           <Link
-            className={`${match.pathname === "/" && "bg-slate-100 dark:text-grey"} hover:bg-slate-200 light:text-black rounded-xl px-5 py-2`}
+            className={`${match.pathname === "/" && "bg-slate-100 dark:text-grey"} hover:bg-slate-200 hover:text-grey light:text-black rounded-xl px-5 py-2`}
             onClick={() => topFunction()}
             to={"/"}
           >
@@ -195,14 +195,14 @@ const Navbar = () => {
               <>
                 <Link
                   to="/editor"
-                  className="hidden md:flex gap-2 link rounded-xl"
+                  className="hidden gap-2 md:flex link rounded-xl"
                 >
                   <i className="fi fi-rr-file-edit"></i>
                   <p>Tulis Artikel</p>
                 </Link>
                 <Link
                   to="/donation/create"
-                  className="hidden md:flex gap-2 link rounded-xl"
+                  className="hidden gap-2 md:flex link rounded-xl"
                 >
                   <i className="fi fi-rr-file-edit"></i>
                   <p>Buat Donasi</p>
@@ -215,7 +215,7 @@ const Navbar = () => {
 
           {!isDonatingPage && (
             <button
-              className="w-12 h-12 rounded-full bg-grey relative hover:bg-black/10"
+              className="relative w-12 h-12 rounded-full bg-grey hover:bg-black/10"
               onClick={changeTheme}
               aria-label="ubah tema"
             >
@@ -226,9 +226,9 @@ const Navbar = () => {
           {access_token ? (
             <>
               <Link to="/dashboard/notifications">
-                <button className="w-12 h-12 rounded-full bg-grey relative hover:bg-black/10">
-                  <i className="fi fi-rr-bell text-2xl block mt-1"></i>
-                  {new_notification_available ? <span className="bg-red w-3 h-3 rounded-full absolute z-10 top-2 right-2"></span> : ""}
+                <button className="relative w-12 h-12 rounded-full bg-grey hover:bg-black/10">
+                  <i className="block mt-1 text-2xl fi fi-rr-bell"></i>
+                  {new_notification_available ? <span className="absolute z-10 w-3 h-3 rounded-full bg-red top-2 right-2"></span> : ""}
                 </button>
               </Link>
 
@@ -237,7 +237,7 @@ const Navbar = () => {
                 onClick={toggleDrawer}
               >
                 <svg
-                  className="block h-4 w-4 fill-current"
+                  className="block w-4 h-4 fill-current"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -255,7 +255,7 @@ const Navbar = () => {
                   <img
                     src={profile_img}
                     alt={"profile-image"}
-                    className="w-full h-full object-cover rounded-full"
+                    className="object-cover w-full h-full rounded-full"
                   />
                 </button>
 
@@ -276,7 +276,7 @@ const Navbar = () => {
                 onClick={toggleDrawer}
               >
                 <svg
-                  className="block h-4 w-4 fill-current"
+                  className="block w-4 h-4 fill-current"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -304,13 +304,13 @@ const Navbar = () => {
         duration={0}
       >
         <>
-          <div className="flex gap-3 p-5 justify-center items-center">
+          <div className="flex items-center justify-center gap-3 p-5">
             <img
               src={logo}
               className="w-10 h-10"
               alt={"logo-img"}
             />
-            <p className="font-semibold text-xl light:text-black dark:text-grey">Niqi Foundation</p>
+            <p className="text-xl font-semibold light:text-black dark:text-grey">Niqi Foundation</p>
           </div>
           <div className="flex flex-col justify-center">
             <Link
@@ -361,14 +361,14 @@ const Navbar = () => {
               <>
                 <Link
                   to="/editor"
-                  className="flex light:text-black dark:text-grey gap-2 link rounded-xl"
+                  className="flex gap-2 light:text-black dark:text-grey link rounded-xl"
                 >
                   <i className="fi fi-rr-file-edit"></i>
                   <p>Tulis Artikel</p>
                 </Link>
                 <Link
                   to="/donation/create"
-                  className="flex light:text-black dark:text-grey gap-2 link rounded-xl"
+                  className="flex gap-2 light:text-black dark:text-grey link rounded-xl"
                 >
                   <i className="fi fi-rr-file-edit"></i>
                   <p>Buat Donasi</p>
@@ -381,14 +381,14 @@ const Navbar = () => {
               <>
                 <Link
                   to={"/signup"}
-                  className="btn-dark w-full text-center"
+                  className="w-full text-center btn-dark"
                   onClick={() => toggleDrawer()}
                 >
                   Daftar
                 </Link>
                 <Link
                   to={"/signin"}
-                  className="btn-dark w-full text-center"
+                  className="w-full text-center btn-dark"
                   onClick={() => toggleDrawer()}
                 >
                   Masuk
@@ -397,13 +397,13 @@ const Navbar = () => {
             ) : (
               <>
                 <button
-                  className="btn-dark bg-red dark:text-black light:text-white w-full text-center"
+                  className="w-full text-center btn-dark bg-red dark:text-black light:text-white"
                   onClick={() => {
                     toggleDrawer();
                     setShowSignOutConfirm(true);
                   }}
                 >
-                  <h1 className="font-bold text-xl mg-1">Sign Out</h1>
+                  <h1 className="text-xl font-bold mg-1">Sign Out</h1>
                 </button>
               </>
             )}

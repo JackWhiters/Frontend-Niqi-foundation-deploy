@@ -10,6 +10,7 @@ import { toast } from "react-hot-toast";
 import { uploadImage } from "../common/aws";
 import axios from "axios";
 import dayjs from "dayjs";
+import { random } from "lodash";
 
 const DonationEditor = () => {
   let { theme } = useContext(ThemeContext);
@@ -115,23 +116,29 @@ const DonationEditor = () => {
     }
   };
 
+  // 
+
   const handleOnCreateOrUpdate = (isEdit, id) => {
     if (title === "") {
       return toast.error("Mohon isi judul donasi");
     }
-
+  
     if (targetAmount === 0) {
       return toast.error("Mohon isi target donasi");
     }
-
+  
     if (donationExpiration === "") {
       return toast.error("Mohon isi tanggal kadaluarsa donasi");
     }
-
+  
     if (thumbnailUrl === "") {
       return toast.error("Mohon upload thumbnail donasi");
     }
-
+  
+    // Generate a random update_id
+    const generateUpdateId = () =>
+      `${Date.now()}${Math.floor(Math.random() * 1000)}`;
+  
     const payload = {
       title,
       description: donationDescription,
@@ -139,10 +146,18 @@ const DonationEditor = () => {
       thumbnail: thumbnailUrl,
       expiry_time: donationExpiration,
       content: donationNewestInfo,
+      updates: [
+        {
+          update_id: generateUpdateId(),
+          update_title: "Initial Update",
+          update_description: "Donation created successfully.",
+          update_thumbnail: thumbnailUrl,
+        },
+      ],
     };
-
+  
     let loadingToast = toast.loading("Saving Donation...");
-
+  
     const createDonation = () => {
       axios
         .post(import.meta.env.VITE_SERVER_DOMAIN + "/donation", payload, {
@@ -153,7 +168,7 @@ const DonationEditor = () => {
         .then(() => {
           toast.dismiss(loadingToast);
           toast.success("Published 👍");
-
+  
           setTimeout(() => {
             navigate("/donation");
           }, 500);
@@ -163,10 +178,10 @@ const DonationEditor = () => {
           return toast.error("ERR SERVER: " + response?.data?.error);
         });
     };
-
+  
     const updateDonation = id => {
       console.log("Update Donation Schedule: ", payload, id);
-
+  
       axios
         .put(import.meta.env.VITE_SERVER_DOMAIN + `/donation/${id}`, payload, {
           headers: {
@@ -176,7 +191,7 @@ const DonationEditor = () => {
         .then(() => {
           toast.dismiss(loadingToast);
           toast.success("Saved 👍");
-
+  
           setTimeout(() => {
             navigate("/donation");
           }, 500);
@@ -186,7 +201,7 @@ const DonationEditor = () => {
           return toast.error(response?.data?.error);
         });
     };
-
+  
     if (isEdit) {
       updateDonation(id);
       console.log("Updated Donation");
@@ -210,11 +225,11 @@ const DonationEditor = () => {
         >
           <img src={logo} />
         </Link>
-        <p className="max-md:hidden text-black line-clamp-1 w-full">{isEdit ? `Edit ${detailDonation.title}` : "Buat Donasi Baru"}</p>
+        <p className="w-full text-black max-md:hidden line-clamp-1">{isEdit ? `Edit ${detailDonation.title}` : "Buat Donasi Baru"}</p>
 
         <div className="flex gap-4 ml-auto">
           <button
-            className="btn-dark py-2"
+            className="py-2 btn-dark"
             onClick={() => handleOnCreateOrUpdate(isEdit, id)}
             disabled={isLoading}
           >
@@ -285,7 +300,7 @@ const DonationEditor = () => {
         <section>
           <div className="mx-auto max-w-[900px] w-full flex flex-col gap-8">
             {/* Upload Thumbnail */}
-            <div className="relative aspect-video hover:opacity-80 bg-white border-4 border-grey">
+            <div className="relative bg-white border-4 aspect-video hover:opacity-80 border-grey">
               <label htmlFor="uploadBanner">
                 <img
                   src={thumbnailUrl}
@@ -307,16 +322,16 @@ const DonationEditor = () => {
               <textarea
                 defaultValue={title}
                 placeholder="Judul Donasi"
-                className="text-4xl font-medium w-full h-20 outline-none resize-none leading-tight placeholder:opacity-40 bg-white"
+                className="w-full h-20 text-4xl font-medium leading-tight bg-white outline-none resize-none placeholder:opacity-40"
                 onKeyUp={e => setTitle(e.target.value)}
               />
-              <hr className="w-full border-black border opacity-10 my-5" />
+              <hr className="w-full my-5 border border-black opacity-10" />
             </div>
 
             {/* Target Donasi */}
             <div className="flex items-center w-full gap-4">
               <p className="text-xl">Isi Target Donasi</p>
-              <div className=" flex items-center border rounded bg-grey">
+              <div className="flex items-center border rounded bg-grey">
                 <span className="px-3 text-dark-grey">Rp</span>
                 <input
                   type="text"
@@ -331,7 +346,7 @@ const DonationEditor = () => {
             </div>
 
             {/* Tanggal Berakhir Donasi */}
-            <div className="flex gap-4 items-center ">
+            <div className="flex items-center gap-4 ">
               <p className="text-xl">Pilih Tanggal Berakhir Donasi</p>
               <input
                 className="px-3 py-2 border rounded-lg bg-grey"
@@ -342,7 +357,7 @@ const DonationEditor = () => {
                 id="donation_expiration"
               />
             </div>
-            <hr className="w-full border-black border opacity-10 my-5" />
+            <hr className="w-full my-5 border border-black opacity-10" />
 
             {/* Konten/Deskripsi Donasi */}
             {/* <div>
@@ -356,7 +371,7 @@ const DonationEditor = () => {
               <p className="text-2xl font-bold">Deskripsi Donasi (Untuk Preview Card Donasi)</p>
               <textarea
                 defaultValue={donationDescription}
-                className="border rounded-xl w-full p-3 bg-grey"
+                className="w-full p-3 border rounded-xl bg-grey"
                 name="donation_description"
                 onChange={e => setDonationDescription(e.target.value)}
                 id="donation_description"
@@ -366,7 +381,7 @@ const DonationEditor = () => {
               <p>Batas Karakter {donationDescription?.length ?? 0}/500</p>
             </div>
 
-            <hr className="w-full border-black border opacity-10 my-5" />
+            <hr className="w-full my-5 border border-black opacity-10" />
 
             {/* Info Terbaru Donasi */}
             {/* <div>
@@ -380,7 +395,7 @@ const DonationEditor = () => {
               <p className="text-2xl font-bold">Isi Konten Donasi</p>
               <textarea
                 defaultValue={donationNewestInfo}
-                className="border rounded-xl w-full p-3 bg-grey"
+                className="w-full p-3 border rounded-xl bg-grey"
                 name="donation_newest_info"
                 onChange={e => setDonationNewestInfo(e.target.value)}
                 id="donation_newest_info"
