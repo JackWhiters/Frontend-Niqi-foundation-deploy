@@ -43,7 +43,7 @@ const UserAuthForm = ({ type }) => {
     let serverRoute = type === "sign-in" ? "/signin" : "/signup";
 
     let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    let passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+    let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d\W]{6,30}$/;
 
     let { fullname, email, password } = data;
 
@@ -63,7 +63,7 @@ const UserAuthForm = ({ type }) => {
     }
 
     if (!passwordRegex.test(password)) {
-      return toast.error("Kata sandi harus terdiri dari 6 hingga 20 karakter dengan angka, 1 huruf kecil, dan 1 huruf besar");
+      return toast.error("Kata sandi harus terdiri dari 6 hingga 30 karakter dengan angka, 1 huruf kecil, dan 1 huruf besar");
     }
 
     userAuthThroughServer(serverRoute, data);
