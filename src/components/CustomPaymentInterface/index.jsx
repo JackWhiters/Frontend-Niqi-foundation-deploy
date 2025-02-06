@@ -48,13 +48,15 @@ const totalPaid = (() => {
     // Verifikasi jika amountToBePaid sama dengan gross_amount dari Midtrans
     if (grossAmountFromMidtrans && grossAmountFromMidtrans !== amountToBePaid) {
       console.warn("Warning: amountToBePaid tidak sesuai dengan gross_amount dari Midtrans.");
-      return null; // Return null jika ada perbedaan
+      // Menggunakan gross_amount dari Midtrans jika tidak sesuai
+      return grossAmountFromMidtrans.toLocaleString("id-ID");
     }
 
     // Verifikasi jika amountToBePaid sama dengan gross_amount yang ada di localStorage
     if (grossAmountFromLocalStorage && grossAmountFromLocalStorage !== amountToBePaid) {
       console.warn("Warning: amountToBePaid tidak sesuai dengan gross_amount yang ada di localStorage.");
-      return null; // Return null jika ada perbedaan
+      // Menggunakan gross_amount dari localStorage jika tidak sesuai
+      return grossAmountFromLocalStorage.toLocaleString("id-ID");
     }
 
     // Jika amountToBePaid sesuai, tampilkan dengan format IDR
@@ -62,8 +64,8 @@ const totalPaid = (() => {
   }
 
   // Jika amountToBePaid == 0, gunakan gross_amount yang ada di midtrans_response atau localStorage
-  return parseFloat(midtrans_response?.gross_amount || localDataPayment?.midtrans_response?.gross_amount || 0)
-    .toLocaleString("id-ID");
+  const grossAmount = parseFloat(midtrans_response?.gross_amount || localDataPayment?.midtrans_response?.gross_amount || 0);
+  return grossAmount.toLocaleString("id-ID");
 })();
 
 // Ambil data user dari context
@@ -73,6 +75,7 @@ let {
 
 // Cek apakah nilai totalPaid sesuai
 console.log("Total Paid:", totalPaid);
+
 
 
 
