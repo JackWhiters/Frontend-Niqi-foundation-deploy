@@ -29,16 +29,52 @@ const CustomPaymentInterface = ({ amountToBePaid, donation_id, title, setCurrent
   const [selectedBankImgSrc, setSelectedBankImgSrc] = useState("");
   const [paymentData, setPaymentData] = useState(null);
 
-  // Local Data
-  const localDataPayment = localStorage.getItem("midtrans") !== null ? JSON.parse(localStorage.getItem("midtrans")) : {};
-  const totalPaid =
-    amountToBePaid !== 0
-      ? amountToBePaid.toLocaleString("id-ID")
-      : parseFloat(localDataPayment?.midtrans_response?.gross_amount).toLocaleString("Id-ID");
+// Ambil data midtrans dari localStorage
+const localDataPayment = localStorage.getItem("midtrans")
+  ? JSON.parse(localStorage.getItem("midtrans"))
+  : {};
 
-  let {
-    userAuth: { access_token, fullname, username },
-  } = useContext(UserContext);
+// Ambil response dari Midtrans
+const midtrans_response = localDataPayment?.midtrans_response || {};
+
+// Cek apakah `amountToBePaid` tidak sama dengan 0
+const totalPaid = (() => {
+  // Jika amountToBePaid tidak sama dengan 0, pastikan sesuai dengan gross_amount
+  if (amountToBePaid !== 0) {
+    // Pastikan perbandingan dilakukan pada tipe data angka, bukan string yang sudah diformat
+    const grossAmountFromMidtrans = parseFloat(midtrans_response?.gross_amount || 0);
+    const grossAmountFromLocalStorage = parseFloat(localDataPayment?.midtrans_response?.gross_amount || 0);
+
+    // Verifikasi jika amountToBePaid sama dengan gross_amount dari Midtrans
+    if (grossAmountFromMidtrans && grossAmountFromMidtrans !== amountToBePaid) {
+      console.warn("Warning: amountToBePaid tidak sesuai dengan gross_amount dari Midtrans.");
+      return null; // Return null jika ada perbedaan
+    }
+
+    // Verifikasi jika amountToBePaid sama dengan gross_amount yang ada di localStorage
+    if (grossAmountFromLocalStorage && grossAmountFromLocalStorage !== amountToBePaid) {
+      console.warn("Warning: amountToBePaid tidak sesuai dengan gross_amount yang ada di localStorage.");
+      return null; // Return null jika ada perbedaan
+    }
+
+    // Jika amountToBePaid sesuai, tampilkan dengan format IDR
+    return amountToBePaid.toLocaleString("id-ID");
+  }
+
+  // Jika amountToBePaid == 0, gunakan gross_amount yang ada di midtrans_response atau localStorage
+  return parseFloat(midtrans_response?.gross_amount || localDataPayment?.midtrans_response?.gross_amount || 0)
+    .toLocaleString("id-ID");
+})();
+
+// Ambil data user dari context
+let {
+  userAuth: { access_token, fullname, username },
+} = useContext(UserContext);
+
+// Cek apakah nilai totalPaid sesuai
+console.log("Total Paid:", totalPaid);
+
+
 
   useEffect(() => {
     if (
